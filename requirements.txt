@@ -1,0 +1,8 @@
+django
+pillow
+requests
+django-paypal
+django-storages
+numpy
+boto3
+python-decouple
