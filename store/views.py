@@ -669,7 +669,7 @@ def product_variants_add(request):
                     else:
                         SizeVariant.objects.create(product_id=product,
                                                    Color_id=color_id,
-                                                   size=size_l[i], price=price_l[i], stock=stock_l[i])
+                                                   size=size_l[i], price=price_l[i], rprice=price_l[i],stock=stock_l[i])
                 else:
                     messages.info(request, "Couldn't update! Check if stock or price is valid")
                     size_list = SizeVariant.objects.all()
