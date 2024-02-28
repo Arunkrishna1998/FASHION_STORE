@@ -541,14 +541,7 @@ def admin_product_add(request):
             product_description=product_description,
         )
 
-        # new_width, new_height = 500, 500
-        # img = Image.open(image)
-        # img.thumbnail((new_width, new_height))
-        # image_name = image.name
-        # img_io = BytesIO()
-        # img.save(img_io, format='JPEG')
-        # image_file = ImageFile(img_io, name=image_name)
-        print("****************************  1")
+
 
         new_width, new_height = 3024, 4032
         img = Image.open(image)
@@ -689,7 +682,7 @@ def product_variants_add(request):
                 if float(stock_l[i]) >= 0 and float(price_l[i]) > 0:
                     SizeVariant.objects.create(product_id=product,
                                                Color_id=color_id,
-                                               size=size_l[i],price=price_l[i],stock=stock_l[i])
+                                               size=size_l[i],price=price_l[i],rprice=price_l[i],stock=stock_l[i])
                 else:
                     color_id = ColorVariant.objects.get(color=color)
                     color_id.delete()
@@ -733,8 +726,6 @@ def product_variants_stock_update(request,size_id,product_id):
 
 
 def product_variants_stock_delete(request,size_id,product_id):
-    # product_id = request.GET['product_id']
-    # size_id = request.GET['size_id']
     try:
         if size_id:
             size = SizeVariant.objects.get(uid=size_id)
@@ -767,6 +758,7 @@ def product_variants_stock_updates(request):
         stock = request.POST['stock']
         s = SizeVariant.objects.get(uid=size_id)
         s.price=price
+        s.rprice=price
         s.stock=stock
         s.size=size
         s.save()
